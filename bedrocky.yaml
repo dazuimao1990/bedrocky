@@ -1,0 +1,34 @@
+hosts:
+- host: 127.0.0.1
+  port: 33
+  password: yyyyyyyy
+  publickey: ~/.ssh/other.pub
+  role:
+  - checksystem
+- host: 192.168.0.1
+  role:
+  - checksystem
+- host: 192.168.0.2
+  role:
+#  - installdocker
+  - checksystem
+port: 22
+username: root
+password: xxxxxxxx
+publickey: ~/.ssh/id_rsa.pub # TODO unuseable
+checksystem:
+  - name: prepare
+    module: shell
+    spec:
+      - hostname
+      - uname -v
+  - name: checkarch
+    module: shell
+    spec:
+      - arch 
+# installdocker: # TODO systemd module 
+#   - name: check01
+#     module: systemd
+#     spec:
+#       startcmd: docker start
+#       startenv: ENV=value,ENV1=value1
